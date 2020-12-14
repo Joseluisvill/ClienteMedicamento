@@ -6,7 +6,6 @@
 package com.jose.clientmedicamento.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,6 +51,12 @@ public class Medicamentos implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "cedpaciente")
+    private String cedpaciente;
 
     public Medicamentos() {
     }
@@ -60,11 +65,12 @@ public class Medicamentos implements Serializable {
         this.id = id;
     }
 
-    public Medicamentos(Integer id, String nombre, int cantidad, String descripcion) {
+    public Medicamentos(Integer id, String nombre, int cantidad, String descripcion, String cedpaciente) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
+        this.cedpaciente = cedpaciente;
     }
 
     public Integer getId() {
@@ -99,6 +105,14 @@ public class Medicamentos implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public String getCedpaciente() {
+        return cedpaciente;
+    }
+
+    public void setCedpaciente(String cedpaciente) {
+        this.cedpaciente = cedpaciente;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,7 +135,7 @@ public class Medicamentos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jose.consumirbdhospital.Medicamentos[ id=" + id + " ]";
+        return "com.herrera.clientecitas.entity.Medicamentos[ id=" + id + " ]";
     }
     
 }

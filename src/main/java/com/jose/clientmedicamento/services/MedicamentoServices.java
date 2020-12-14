@@ -106,14 +106,14 @@ public class MedicamentoServices{
         //clientconfig.register(feature);
         //clientconfig.register(HttpAuthenticationFeature.basicBuilder().credentials("jose", "jose").build());
         //Client client=ClientBuilder.newClient(clientconfig);
-       Client client=ClientBuilder.newBuilder().register(feature).newClient();
+       Client client=ClientBuilder.newClient();
+       client.register(feature);
          //Client client=ClientBuilder.newClient();
         List<Medicamentos> m=client.target(URL+"/obtenermedicamentos")
                     .request(MediaType.APPLICATION_JSON)
                     //.property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_USERNAME, "jose")
                     //.property(HttpAuthenticationFeature.HTTP_AUTHENTICATION_BASIC_PASSWORD, "jose")
                     .get(new GenericType<List<Medicamentos>>(){});
-;
         return m;
     }
     public Medicamentos obtenerporid(String id)
